@@ -1,8 +1,6 @@
 import sql
 import rdl
 
-# Define the engine to specify which scripts to run
-engine = ("rdl")  # Options: ("sql", "rdl"), ("sql"), ("rdl")
 
 # Common Database Configurations
 CLIENT_NAME = "DemoReports"  # Mention Client name For RDL Properties
@@ -15,7 +13,7 @@ Start_Date = "01092024"   # Common date for both SQL and RDL scripts
 server = 'HALLMARK2'  # Server name or IP address
 username = 'sa'
 password = 'New31298@'
-database_sql = DataBase  # Shared between sql.py and rdl.py  or You can give DataBase name manually 
+database = DataBase  # Shared between sql.py and rdl.py 
 
 # SQL Script Directory (GitLab repo location)   & you can manually edit the year, month, date
 SQL_BASE_DIR = r"C:\Users\bhargavhallmark\database automation\database-automation\sqls"
@@ -37,23 +35,15 @@ REPORT_SERVER_URL = "http://hallmark2/Reports"
 
 # For .rds DataSource
 NEW_DATA_SOURCE = "HALLMARK2"
-database_rdl = DataBase  # Shared between sql.py and rdl.py or You can give DataBase name manually for catlog Shared DataSource
+database = "DemoReportsDB"  # Shared between sql.py and rdl.py
 
 if __name__ == "__main__":
-    # Execute sql.py if "sql" is in the engine
-    if "sql" in engine:
-        print("Executing SQL scripts...")
-        sql.execute_sql_scripts(server, username, password, database_sql, SQL_BASE_DIR, SQL_START_YEAR, SQL_START_MONTH, SQL_START_DATE)
-    else:
-        print("Skipping SQL scripts (not in engine).")
-
-    # Execute rdl.py if "rdl" is in the engine
-    if "rdl" in engine:
-        print("Executing RDL deployment...")
-        rdl.execute_rdl_deployment(
-            RDL_BASE_DIR, RDL_START_YEAR, RDL_START_MONTH, RDL_START_DATE, 
-            CLIENT_NAME, VS_PATH, REPORT_USER, REPORT_PASSWORD, 
-            REPORT_SERVER_URL, NEW_DATA_SOURCE, database_rdl
-        )
-    else:
-        print("Skipping RDL deployment (not in engine).")
+    # Execute sql.py first
+    sql.execute_sql_scripts(server, username, password, database, SQL_BASE_DIR, SQL_START_YEAR, SQL_START_MONTH, SQL_START_DATE)
+    
+    # Execute rdl.py after sql.py completes
+    rdl.execute_rdl_deployment(
+        RDL_BASE_DIR, RDL_START_YEAR, RDL_START_MONTH, RDL_START_DATE, 
+        CLIENT_NAME, VS_PATH, REPORT_USER, REPORT_PASSWORD, 
+        REPORT_SERVER_URL, NEW_DATA_SOURCE, database
+    )
