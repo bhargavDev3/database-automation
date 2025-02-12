@@ -2,11 +2,11 @@ import sql
 import rdl
 
 # Define the engine to specify which scripts to run
-engine = ("rdl")  # Options: ("sql", "rdl"), ("sql"), ("rdl")
+engine = ("sql","rdl")  # Options: ("sql", "rdl"), ("sql"), ("rdl")
 
 # Common Database Configurations
-CLIENT_NAME = "DemoReports"  # Mention Client name For RDL Properties
-DataBase = 'DemoReportsDB'   # Shared between sql.py and rdl.py     --->  check dataBase name in sql server before execute
+CLIENT_NAME = "DemoReports2"  # Mention Client name For RDL Properties
+DataBase = 'DemoReports2DB'   # Shared between sql.py and rdl.py     --->  check dataBase name in sql server before execute
 Start_Year = "2024"         # Common Year for both SQL and RDL scripts
 Start_Month = "09.September"  # Common Month for both SQL and RDL scripts
 Start_Date = "01092024"   # Common date for both SQL and RDL scripts
@@ -32,7 +32,7 @@ RDL_START_DATE = Start_Date
 VS_PATH = r"C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\devenv.exe"
 
 REPORT_USER = "bhargavhallmark"
-REPORT_PASSWORD = "qL5R*MLO[h_S<26"
+REPORT_PASSWORD = "|#a(F~Ox{Quw4~{"
 REPORT_SERVER_URL = "http://hallmark2/Reports"
 
 # For .rds DataSource
