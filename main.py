@@ -2,7 +2,7 @@ import sql
 import rdl
 
 # Define the engine to specify which scripts to run
-engine = ("sql","rdl")  # Options: ("sql", "rdl"), ("sql"), ("rdl")
+engine = ("sql")  # Options: ("sql", "rdl"), ("sql"), ("rdl")
 
 # Common Database Configurations
 CLIENT_NAME = "DemoReports2"  # Mention Client name For RDL Properties
